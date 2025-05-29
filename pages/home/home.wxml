@@ -1,0 +1,29 @@
+<t-navbar title="GEM学员查询" />
+<view class="main">
+  <view class="title-wrap">
+    <image
+      class="title-icon"
+      mode="aspectFit"
+      src="/assets/{{theme === 'dark' ? 'GEMLOGO' : 'GEMLOGO'}}.png"
+      aria-label="TDesign Logo"
+    />
+  </view>
+  <view class="desc">
+    Dan自己鼓捣的小程序{{isSkyline?' (skyline render)':''}}
+    <text wx:if="{{!isSkyline}}" class="skyline-entry" bindtap="goSkyline">try it</text></view
+  >
+  <pull-down-list
+    wx:for="{{list}}"
+    name="{{item.name}}"
+    icon="{{item.icon}}"
+    wx:key="name"
+    childArr="{{item.childArr}}"
+    bind:click="clickHandle"
+  />
+</view>
+<view class="footer">
+  <view class="show_privacy" bindtap="showPrivacyWin">《服务声明》</view>
+  <t-footer text="该小程序仅演示示例，不收集个人信息。"></t-footer>
+  <t-footer text="Copyright © {{currentYear}} Dan Lu 版权所有"></t-footer>
+</view>
+<trd-privacy id="trdPrivacy" name="TDesign组件库" date="2023年11月14日" winStyle="{{winStyle}}"></trd-privacy>
