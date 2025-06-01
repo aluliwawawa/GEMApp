@@ -8,14 +8,22 @@ Page({
         list: [],
         currentYear: 2026,
         isSkyline: false,
-        username: '{{username}}',
-        startdatum: '{{startdatum}}',
-        zieldatum: '{{zieldatum}}',
-        aktueldatum: '{{aktueldatum}}',
+        username: '',
+        startdatum: '',
+        zieldatum: '',
+        aktueldatum: '',
         userId: '',
-        loading: false,
+        loading: true,
         error: null
     },
+
+    // 格式化日期为 YYYY/MM
+    formatDate(dateStr) {
+        if (!dateStr) return '';
+        const date = new Date(dateStr);
+        return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}`;
+    },
+
     onLoad(options) {
         const { path, q, skyline, userId } = options;
         console.log('页面加载参数:', options);
@@ -50,31 +58,32 @@ Page({
     // 加载用户信息
     async loadUserInfo() {
         try {
-            console.log('开始加载用户信息');
             this.setData({ loading: true, error: null });
             
-            const userInfo = await getUserInfo(this.data.userId);
-            console.log('获取到的用户信息:', userInfo);
+            const userData = await getUserInfo(this.data.userId);
+            console.log('获取到的用户信息:', userData);
             
-            // 使用API返回的数据，如果获取失败则使用默认值
-            this.setData({
-                username: userInfo?.username || '{{username}}',
-                startdatum: userInfo?.startdatum || '{{startdatum}}',
-                zieldatum: userInfo?.zieldatum || '{{zieldatum}}',
-                aktueldatum: userInfo?.aktueldatum || '{{aktueldatum}}',
-                loading: false
-            });
-            
-            console.log('用户信息加载成功');
+            if (userData) {
+                this.setData({
+                    username: userData.username || '',
+                    startdatum: this.formatDate(userData.startdatum) || '',
+                    zieldatum: this.formatDate(userData.zieldatum) || '',
+                    aktueldatum: this.formatDate(userData.aktueldatum) || '',
+                    loading: false
+                });
+                console.log('用户信息加载成功');
+            } else {
+                throw new Error('未获取到用户信息');
+            }
         } catch (error) {
             console.error('加载用户信息失败:', error);
-            // API调用失败时使用默认值
             this.setData({
+                loading: false,
+                error: error.message,
                 username: '{{username}}',
                 startdatum: '{{startdatum}}',
                 zieldatum: '{{zieldatum}}',
-                aktueldatum: '{{aktueldatum}}',
-                loading: false
+                aktueldatum: '{{aktueldatum}}'
             });
         }
     },

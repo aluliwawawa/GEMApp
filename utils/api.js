@@ -1,14 +1,20 @@
 // utils/api.js
-const BASE_URL = 'http://111.229.111.28:5000';
+const BASE_URL = 'http://111.229.111.28:5000/api';
 
-// 封装wx.request为Promise
-function request(options) {
+// 封装请求方法
+const request = (url, method, data) => {
   return new Promise((resolve, reject) => {
     wx.request({
-      ...options,
+      url: `${BASE_URL}${url}`,
+      method,
+      data,
       success: (res) => {
         console.log('请求成功:', res);
-        resolve(res);
+        if (res.statusCode === 200) {
+          resolve(res.data);
+        } else {
+          reject(new Error(res.data.message || '请求失败'));
+        }
       },
       fail: (err) => {
         console.error('请求失败:', err);
@@ -16,103 +22,62 @@ function request(options) {
       }
     });
   });
-}
+};
 
-// 获取用户信息的封装函数
-export async function getUserInfo(userId) {
+// 获取用户信息
+export const getUserInfo = async (userId) => {
   try {
-    console.log('正在获取用户信息，用户ID:', userId);
-    console.log('请求URL:', `${BASE_URL}/api/user/${userId}`);
-    
-    const response = await request({
-      url: `${BASE_URL}/api/user/${userId}`,
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      }
-    });
-    
+    const response = await request(`/user/${userId}`, 'GET');
     console.log('API响应:', response);
-    
-    if (response.statusCode === 200 && response.data) {
+    if (response.status === 'success' && response.data) {
       return response.data;
-    } else {
-      throw new Error(`请求失败: ${response.statusCode}, ${JSON.stringify(response.data)}`);
     }
+    throw new Error(response.message || '获取用户信息失败');
   } catch (error) {
     console.error('获取用户信息失败:', error);
     throw error;
   }
-}
+};
 
-// 获取所有用户信息
-export async function getAllUsers() {
+// 获取所有用户
+export const getAllUsers = async () => {
   try {
-    console.log('正在获取所有用户信息');
-    const response = await request({
-      url: `${BASE_URL}/api/users`,
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      }
-    });
-    
-    if (response.statusCode === 200 && response.data) {
+    const response = await request('/users', 'GET');
+    if (response.status === 'success' && response.data) {
       return response.data;
-    } else {
-      throw new Error(`请求失败: ${response.statusCode}`);
     }
+    throw new Error(response.message || '获取用户列表失败');
   } catch (error) {
-    console.error('获取所有用户信息失败:', error);
+    console.error('获取用户列表失败:', error);
     throw error;
   }
-}
+};
 
 // 更新用户信息
-export async function updateUserInfo(userId, data) {
+export const updateUserInfo = async (userId, data) => {
   try {
-    console.log('正在更新用户信息:', userId, data);
-    const response = await request({
-      url: `${BASE_URL}/api/user/${userId}`,
-      method: 'PUT',
-      data: data,
-      header: {
-        'content-type': 'application/json'
-      }
-    });
-    
-    if (response.statusCode === 200 && response.data) {
+    const response = await request(`/user/${userId}`, 'PUT', data);
+    if (response.status === 'success') {
       return response.data;
-    } else {
-      throw new Error(`请求失败: ${response.statusCode}`);
     }
+    throw new Error(response.message || '更新用户信息失败');
   } catch (error) {
     console.error('更新用户信息失败:', error);
     throw error;
   }
-}
+};
 
 // 创建新用户
-export async function createUser(data) {
+export const createUser = async (data) => {
   try {
-    console.log('正在创建新用户:', data);
-    const response = await request({
-      url: `${BASE_URL}/api/user`,
-      method: 'POST',
-      data: data,
-      header: {
-        'content-type': 'application/json'
-      }
-    });
-    
-    if (response.statusCode === 201 && response.data) {
+    const response = await request('/user', 'POST', data);
+    if (response.status === 'success') {
       return response.data;
-    } else {
-      throw new Error(`请求失败: ${response.statusCode}`);
     }
+    throw new Error(response.message || '创建用户失败');
   } catch (error) {
     console.error('创建用户失败:', error);
     throw error;
   }
-}
+};
 

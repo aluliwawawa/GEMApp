@@ -38,7 +38,7 @@
 }
 
 .welcome-text.highlight {
-  color: rgb(208, 210, 212);
+  color: rgb(43, 129, 216);
   font-weight: bold;
 }
 
