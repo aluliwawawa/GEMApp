@@ -1,19 +1,7 @@
 const base = {
-    name: '彭看看',
+    name: 'GEM学员查询',
     icon: 'app',
     childArr: [
-        {
-            name: 'Button',
-            label: '按钮',
-        },
-        {
-            name: 'Divider',
-            label: '分割线',
-        },
-        {
-            name: 'Fab',
-            label: '悬浮按钮',
-        },
         {
             name: 'Icon',
             label: '图标',
@@ -29,22 +17,11 @@ const base = {
         },
     ],
 };
+
 const skylineBase = {
-    name: '基础',
+    name: 'GEM学员查询',
     icon: 'app',
     childArr: [
-        {
-            name: 'Button',
-            label: '按钮',
-        },
-        {
-            name: 'Divider',
-            label: '分割线',
-        },
-        {
-            name: 'Fab',
-            label: '悬浮按钮',
-        },
         {
             name: 'Icon',
             label: '图标',
@@ -60,4 +37,5 @@ const skylineBase = {
         },
     ],
 };
+
 export { base, skylineBase };

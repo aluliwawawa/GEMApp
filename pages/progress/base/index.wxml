@@ -5,7 +5,7 @@
 
 <view class="demo-desc">百分比内显</view>
 <view class="demo-wrapper">
-  <t-progress theme="plump" percentage="80" />
+  <t-progress theme="plump" percentage="88" />
 </view>
 
 <view class="demo-desc">环形进度条</view>

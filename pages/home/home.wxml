@@ -1,29 +1,39 @@
-<t-navbar title="GEM学员查询" />
+<t-navbar title="捷牧学员进度查询" />
 <view class="main">
-  <view class="title-wrap">
+  <view class="header">
     <image
       class="title-icon"
       mode="aspectFit"
-      src="/assets/{{theme === 'dark' ? 'GEMLOGO' : 'GEMLOGO'}}.png"
+      src="/assets/{{theme === 'dark' ? 'GEMLOGOCN' : 'GEMLOGOCN'}}.png"
       aria-label="TDesign Logo"
     />
   </view>
-  <view class="desc">
-    Dan自己鼓捣的小程序{{isSkyline?' (skyline render)':''}}
-    <text wx:if="{{!isSkyline}}" class="skyline-entry" bindtap="goSkyline">try it</text></view
-  >
-  <pull-down-list
-    wx:for="{{list}}"
-    name="{{item.name}}"
-    icon="{{item.icon}}"
-    wx:key="name"
-    childArr="{{item.childArr}}"
-    bind:click="clickHandle"
-  />
+  
+  <view class="welcome-info">
+    <t-loading theme="circular" size="40rpx" text="加载中..." wx:if="{{loading}}" />
+    
+    <block wx:if="{{!loading}}">
+      <text class="welcome-text">{{username}}，欢迎您选择捷牧！您在{{startdatum}}正式进入项目，我们将携手努力，按计划将于{{zieldatum}}将您送往德国。</text>
+      <text class="welcome-text highlight">根据目前的进展情况，您预估在{{aktueldatum}}前后实际抵达德国。</text>
+      <text class="welcome-text">请点击下方可以查看我们为您定制的时间计划和实际进度。</text>
+      <image class="cat-image" src="/assets/cat.png" mode="aspectFit" />
+    </block>
+  </view>
+
+  <view class="menu-section">
+    <pull-down-list
+      wx:for="{{list}}"
+      name="{{item.name}}"
+      icon="{{item.icon}}"
+      wx:key="name"
+      childArr="{{item.childArr}}"
+      bind:click="clickHandle"
+    />
+  </view>
 </view>
+
 <view class="footer">
   <view class="show_privacy" bindtap="showPrivacyWin">《服务声明》</view>
   <t-footer text="该小程序仅演示示例，不收集个人信息。"></t-footer>
-  <t-footer text="Copyright © {{currentYear}} Dan Lu 版权所有"></t-footer>
+  <t-footer text="Copyright © {{currentYear}} D.Lu 版权所有"></t-footer>
 </view>
-<trd-privacy id="trdPrivacy" name="TDesign组件库" date="2023年11月14日" winStyle="{{winStyle}}"></trd-privacy>
