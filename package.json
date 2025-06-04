@@ -1,0 +1,9 @@
+{
+  "name": "cursorgenerate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "tdesign-miniprogram": "^1.2.8"
+  }
+} 
