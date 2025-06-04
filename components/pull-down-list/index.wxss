@@ -14,23 +14,22 @@
   padding: 0 32rpx;
   font-size: 32rpx;
   line-height: 48rpx;
-  color: var(--td-text-color-secondary);
-}
-.pullDownList .name,
-.pullDownList .icon {
-  transition: opacity 0.3s;
+  color: var(--td-text-color-primary);
+  background-color: var(--td-bg-color-container);
 }
 .pullDownList .name {
-  opacity: 0.9;
+  font-weight: 500;
+  opacity: 1;
 }
-.pullDownList.actived .name {
-  opacity: 0.4;
+.pullDownList .icon {
+  transition: transform 0.3s;
 }
 .pullDownList.actived .icon {
-  opacity: 0.4;
+  transform: rotate(180deg);
 }
 .pullDownList .childBox {
   transition: height 0.3s;
+  background-color: var(--td-bg-color-container);
 }
 .pullDownList .childBox .child {
   box-sizing: border-box;
@@ -42,9 +41,12 @@
   margin-left: 32rpx;
   margin-right: 32rpx;
   font-size: 32rpx;
-  opacity: 0.9;
   color: var(--td-text-color-primary);
+  background-color: var(--td-bg-color-container);
 }
 .pullDownList .childBox .child:last-of-type {
   border-bottom-color: transparent;
+}
+.pullDownList .childBox .child:active {
+  background-color: var(--td-bg-color-container-hover);
 }

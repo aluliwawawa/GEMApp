@@ -1,5 +1,5 @@
 import themeChangeBehavior from 'tdesign-miniprogram/mixins/theme-change';
-import { list, skylineList } from './data/index';
+import { list } from './data/index';
 import { getUserInfo, updateUserInfo } from '../../utils/api';
 
 Page({
@@ -7,7 +7,6 @@ Page({
     data: {
         list: [],
         currentYear: 2026,
-        isSkyline: false,
         username: '',
         startdatum: '',
         zieldatum: '',
@@ -24,26 +23,50 @@ Page({
         return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}`;
     },
 
+    // 显示 UID 输入弹窗
+    showUidInput() {
+        wx.showModal({
+            title: '请输入 UID',
+            editable: true,
+            placeholderText: '请输入您的 UID',
+            success: (res) => {
+                if (res.confirm && res.content) {
+                    // 用户点击确定且输入了内容
+                    this.setData({ userId: res.content }, () => {
+                        this.loadUserInfo();
+                    });
+                } else if (res.confirm) {
+                    // 用户点击确定但没有输入内容
+                    wx.showToast({
+                        title: '请输入 UID',
+                        icon: 'none'
+                    });
+                    this.showUidInput(); // 重新显示输入框
+                } else {
+                    // 用户点击取消
+                    wx.showToast({
+                        title: '需要输入 UID 才能继续',
+                        icon: 'none'
+                    });
+                    this.showUidInput(); // 重新显示输入框
+                }
+            }
+        });
+    },
+
     onLoad(options) {
-        const { path, q, skyline, userId } = options;
+        const { path, q } = options;
         console.log('页面加载参数:', options);
-        let compList = [];
-        this.skyline = skyline;
-        if (this.skyline) {
-            compList = skylineList;
-        }
-        else {
-            compList = list;
-        }
-        compList = compList.slice(2);
+        
+        // 直接设置 list 数据
         this.setData({
-            list: compList,
-            isSkyline: !!skyline,
-            userId: userId || '1'
+            list: list
+        }, () => {
+            console.log('设置后的 list 数据:', this.data.list);
         });
 
-        // 获取用户信息
-        this.loadUserInfo();
+        // 显示 UID 输入弹窗
+        this.showUidInput();
 
         if (q) {
             const str = this.getQueryByUrl(decodeURIComponent(q));
@@ -85,6 +108,16 @@ Page({
                 zieldatum: '{{zieldatum}}',
                 aktueldatum: '{{aktueldatum}}'
             });
+            
+            // 如果加载失败，重新显示 UID 输入框
+            wx.showToast({
+                title: 'UID 无效，请重新输入',
+                icon: 'none',
+                duration: 2000
+            });
+            setTimeout(() => {
+                this.showUidInput();
+            }, 2000);
         }
     },
 
@@ -135,7 +168,7 @@ Page({
             name = name.replace(/[A-Z]/g, (match) => {
                 return `-${match.toLowerCase()}`;
             });
-            path = `/pages/${name}/${this.skyline ? 'skyline/' : ''}${name}`;
+            path = `/pages/${name}/${name}`;
         }
         wx.navigateTo({
             url: path,
@@ -168,10 +201,5 @@ Page({
             });
         }
         return data;
-    },
-    goSkyline() {
-        wx.navigateTo({
-            url: '/pages/home/home?skyline=1',
-        });
     },
 });

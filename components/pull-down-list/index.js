@@ -1,4 +1,4 @@
-const itemHeight = 56 * 2;
+const itemHeight = 112;
 Component({
     data: {
         childBoxHeight: 0,
@@ -21,21 +21,27 @@ Component({
             type: Array,
             value: [],
             observer(childArr) {
-                this.setData({
-                    childBoxHeight: this.data.defaultOpen ? itemHeight * childArr.length : 0,
-                });
+                if (childArr && childArr.length > 0) {
+                    this.setData({
+                        childBoxHeight: this.data.defaultOpen ? itemHeight * childArr.length : 0,
+                    });
+                }
             },
         },
     },
     methods: {
         switchHandle() {
             const { childArr, childBoxHeight } = this.data;
-            this.setData({
-                childBoxHeight: childBoxHeight > 0 ? 0 : childArr.length * itemHeight,
-            });
+            if (childArr && childArr.length > 0) {
+                this.setData({
+                    childBoxHeight: childBoxHeight > 0 ? 0 : itemHeight * childArr.length,
+                });
+            }
         },
         tapChild(e) {
-            this.triggerEvent('click', e.target.dataset);
+            if (e.target && e.target.dataset) {
+                this.triggerEvent('click', e.target.dataset);
+            }
         },
     },
 });

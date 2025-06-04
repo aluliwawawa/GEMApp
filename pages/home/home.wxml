@@ -25,7 +25,7 @@
       wx:for="{{list}}"
       name="{{item.name}}"
       icon="{{item.icon}}"
-      wx:key="name"
+      wx:key="*this"
       childArr="{{item.childArr}}"
       bind:click="clickHandle"
     />
