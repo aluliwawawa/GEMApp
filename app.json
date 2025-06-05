@@ -1,5 +1,4 @@
 {
-  "darkmode": false,
   "pages": [
     "pages/home/home",
     "pages/button/button",
@@ -53,8 +52,7 @@
     "pages/link/link",
     "pages/col/col",
     "pages/color-picker/color-picker",
-    "pages/guide/guide",
-    "assets/GEM.png"
+    "pages/guide/guide"
   ],
   "subpackages": [
     {
@@ -138,7 +136,7 @@
     "t-navbar": "tdesign-miniprogram/navbar/navbar"
   },
   "window": {
-    "navigationBarTitleText": "TDesign",
+    "navigationBarTitleText": "GemApp",
     "navigationStyle": "custom",
     "navigationBarTextStyle": "@navTxtStyle"
   },

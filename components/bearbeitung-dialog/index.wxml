@@ -1,0 +1,7 @@
+<t-dialog
+  visible="{{visible}}"
+  title="提示"
+  content="施工中，敬请期待！"
+  confirm-btn="好的"
+  bind:confirm="onConfirm"
+/> 

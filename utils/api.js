@@ -53,31 +53,18 @@ export const getAllUsers = async () => {
   }
 };
 
-// 更新用户信息
-export const updateUserInfo = async (userId, data) => {
-  try {
-    const response = await request(`/user/${userId}`, 'PUT', data);
-    if (response.status === 'success') {
-      return response.data;
+// 获取用户步骤状态
+export const getStepStatus = async (userId) => {
+    try {
+        const response = await request(`/user/${userId}/status`, 'GET');
+        console.log('获取步骤状态响应:', response);
+        if (response.status === 'success' && response.data) {
+            return response.data;
+        }
+        throw new Error(response.message || '获取步骤状态失败');
+    } catch (error) {
+        console.error('获取步骤状态失败:', error);
+        throw error;
     }
-    throw new Error(response.message || '更新用户信息失败');
-  } catch (error) {
-    console.error('更新用户信息失败:', error);
-    throw error;
-  }
-};
-
-// 创建新用户
-export const createUser = async (data) => {
-  try {
-    const response = await request('/user', 'POST', data);
-    if (response.status === 'success') {
-      return response.data;
-    }
-    throw new Error(response.message || '创建用户失败');
-  } catch (error) {
-    console.error('创建用户失败:', error);
-    throw error;
-  }
 };
 

@@ -22,10 +22,10 @@
   opacity: 1;
 }
 .pullDownList .icon {
-  transition: transform 0.3s;
+  transition: color 0.3s;
 }
 .pullDownList.actived .icon {
-  transform: rotate(180deg);
+  color: #0052d9;
 }
 .pullDownList .childBox {
   transition: height 0.3s;

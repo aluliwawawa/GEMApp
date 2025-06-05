@@ -4,20 +4,37 @@
     <image
       class="title-icon"
       mode="aspectFit"
-      src="/assets/{{theme === 'dark' ? 'GEMLOGOCN' : 'GEMLOGOCN'}}.png"
+      src="/assets/GEMLOGOCN.png"
       aria-label="TDesign Logo"
     />
   </view>
   
   <view class="welcome-info">
-    <t-loading theme="circular" size="40rpx" text="加载中..." wx:if="{{loading}}" />
-    
+    <welcome-frame
+      username="{{username}}"
+      startdatum="{{startdatum}}"
+      zieldatum="{{zieldatum}}"
+      aktueldatum="{{aktueldatum}}"
+    />
+
     <block wx:if="{{!loading}}">
-      <text class="welcome-text">{{username}}，欢迎您选择捷牧！您在{{startdatum}}正式进入项目，我们将携手努力，按计划将于{{zieldatum}}将您送往德国。</text>
-      <text class="welcome-text highlight">根据目前的进展情况，您预估在{{aktueldatum}}前后实际抵达德国。</text>
-      <text class="welcome-text">请点击下方可以查看我们为您定制的时间计划和实际进度。</text>
+      <text class="welcome-text">{{username}}，欢迎您选择捷牧！</text>
+      <text class="welcome-text">您在{{startdatum}}正式进入项目，我们为您定制了赴德计划，同时也需要您的努力，大家共同争取于{{zieldatum}}将您送往德国。</text>
+      <text class="welcome-text highlight">根据目前的实际进展，您预估在{{aktueldatum}}前后可抵达德国。</text>
       <image class="cat-image" src="/assets/cat.png" mode="aspectFit" />
     </block>
+  </view>
+
+  <view class="steps-container">
+    <t-steps readonly>
+      <t-step-item 
+        wx:for="{{steps}}" 
+        wx:key="index" 
+        title="{{item.title}}" 
+        status="{{item.status}}"
+        content="{{['德语学习', '面试模拟', '准备资料', '准备入境', '境外护航'][index]}}" 
+      />
+    </t-steps>
   </view>
 
   <view class="menu-section">
@@ -37,3 +54,5 @@
   <t-footer text="该小程序仅演示示例，不收集个人信息。"></t-footer>
   <t-footer text="Copyright © {{currentYear}} D.Lu 版权所有"></t-footer>
 </view>
+
+<bearbeitung-dialog visible="{{showBearbeitungDialog}}" bind:confirm="onBearbeitungDialogConfirm" />

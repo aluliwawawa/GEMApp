@@ -1,8 +1,12 @@
 {
+  "navigationBarTitleText": "捷牧学员进度查询",
   "usingComponents": {
-    "pull-down-list": "../../components/pull-down-list",
+    "t-navbar": "tdesign-miniprogram/navbar/navbar",
     "t-footer": "tdesign-miniprogram/footer/footer",
-    "trd-privacy": "/components/trd-privacy/privacy"
-  },
-  "navigationBarTitleText": "TDesign UI"
+    "t-loading": "tdesign-miniprogram/loading/loading",
+    "pull-down-list": "/components/pull-down-list/index",
+    "t-steps": "tdesign-miniprogram/steps/steps",
+    "t-step-item": "tdesign-miniprogram/step-item/step-item",
+    "bearbeitung-dialog": "/components/bearbeitung-dialog/index"
+  }
 }

@@ -1,6 +1,6 @@
 const dienst2 = {
     name: '服务状态',
-    icon: 'chat',
+    icon: 'undertake-hold-up',
     childArr: [
         {
             name: 'ActionSheet',

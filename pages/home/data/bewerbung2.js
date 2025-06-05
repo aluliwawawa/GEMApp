@@ -1,6 +1,6 @@
 const bewerbung2 = {
     name: '申请状态',
-    icon: 'image',
+    icon: 'personal-information',
     childArr: [
         {
             name: 'Avatar',

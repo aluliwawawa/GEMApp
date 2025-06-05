@@ -1,6 +1,6 @@
 const daf = {
     name: '德语状态',
-    icon: 'bulletpoint',
+    icon: 'service',
     childArr: [
         {
             name: 'Calendar',
