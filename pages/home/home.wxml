@@ -32,7 +32,7 @@
         wx:key="index" 
         title="{{item.title}}" 
         status="{{item.status}}"
-        content="{{['德语学习', '面试模拟', '准备资料', '准备入境', '境外护航'][index]}}" 
+        content="{{['德语学习', '面试模拟', '签证资料', '准备入境', '境外护航'][index]}}" 
       />
     </t-steps>
   </view>

@@ -197,26 +197,45 @@ Page({
         this.trdPrivacy.showPrivacyWin();
     },
     clickHandle(e) {
-        let { name, path = '' } = e.detail.item;
-        if (path === 'bearbeitung') {
-            this.setData({ showBearbeitungDialog: true });
-            return;
+        const item = e.detail.item;
+        
+        // 如果是子项点击
+        if (item.label) {
+            if (item.url === 'bearbeitung') {
+                this.setData({ showBearbeitungDialog: true });
+                return;
+            }
+            
+            if (item.url) {
+                wx.navigateTo({
+                    url: item.url,
+                    fail: (err) => {
+                        wx.navigateTo({
+                            url: '/pages/home/navigateFail/navigateFail',
+                        });
+                    },
+                });
+                return;
+            }
         }
-        if (!path) {
+        
+        // 如果是父项点击
+        let name = item.name;
+        if (name) {
             name = name.replace(/^[A-Z]/, (match) => `${match}`.toLocaleLowerCase());
             name = name.replace(/[A-Z]/g, (match) => {
                 return `-${match.toLowerCase()}`;
             });
-            path = `/pages/${name}/${name}`;
+            const path = `/pages/${name}/${name}`;
+            wx.navigateTo({
+                url: path,
+                fail: (err) => {
+                    wx.navigateTo({
+                        url: '/pages/home/navigateFail/navigateFail',
+                    });
+                },
+            });
         }
-        wx.navigateTo({
-            url: path,
-            fail: () => {
-                wx.navigateTo({
-                    url: '/pages/home/navigateFail/navigateFail',
-                });
-            },
-        });
     },
 
     showPrivacyWin() {
@@ -253,11 +272,7 @@ Page({
     },
 
     onBearbeitungDialogConfirm() {
-        // 确保状态更新
-        this.setData({ 
-            showBearbeitungDialog: false 
-        }, () => {
-            console.log('弹窗已关闭');
-        });
+        console.log('关闭 bearbeitung 对话框');
+        this.setData({ showBearbeitungDialog: false });
     }
 });

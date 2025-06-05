@@ -4,7 +4,7 @@
     <t-icon name="{{icon}}" size="48rpx" t-class="icon" aria-hidden />
   </view>
   <view class="childBox" style="height: {{ childBoxHeight }}rpx" aria-hidden="{{childBoxHeight ? '' : true}}">
-    <view class="child" wx:for="{{childArr}}" wx:key="name" data-item="{{item}}" aria-role="button" bind:tap="tapChild">
+    <view class="child" wx:for="{{childArr}}" wx:key="id" data-item="{{item}}" aria-role="button" bind:tap="tapChild">
       {{ item.label }}
       <t-icon name="chevron-right" color="var(--td-text-color-placeholder)" aria-hidden />
     </view>
