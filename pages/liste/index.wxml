@@ -4,7 +4,7 @@
   <t-navbar class="demo-navbar" title="签证材料" leftArrow />
 </view>
 
-<view class="demo-desc" style="margin: 32rpx 32rpx 48rpx">您可以提前准备签证材料</view>
+<view class="demo-desc" style="margin: 32rpx 32rpx 48rpx">您可以提前准备签证材料，点击下方可以备忘哦</view>
 
 <t-checkbox-group t-class="horizontal-box" value="{{value}}" bind:change="onChange">
   <view wx:for="{{items}}" wx:key="index" class="card {{_.contain(value, index) ? 'card--active' : ''}}">

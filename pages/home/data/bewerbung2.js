@@ -3,12 +3,18 @@ const bewerbung2 = {
     icon: 'personal-information',
     childArr: [
         {
-            name: 'Avatar',
+            id: 'progress',
+            name: 'Dialog',
             label: '申请进度',
+            url: 'bearbeitung',
+            icon: 'icon-progress'
         },
         {
-            name: 'Badge',
+            id: 'interview',
+            name: 'Dialog',
             label: '面试邀请',
+            url: 'bearbeitung',
+            icon: 'icon-interview'
         },
     ],
 };

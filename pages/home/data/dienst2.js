@@ -8,8 +8,10 @@ const dienst2 = {
             url: '/pages/liste/index'
         },
         {
+            id: 'career',
             name: 'Dialog',
             label: '职途护航',
+            url: 'bearbeitung',
         },
     ],
 };

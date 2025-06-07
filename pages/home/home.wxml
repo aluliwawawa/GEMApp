@@ -19,8 +19,8 @@
 
     <block wx:if="{{!loading}}">
       <text class="welcome-text">{{username}}，感谢您选择捷牧！</text>
-      <text class="welcome-text">您在{{startdatum}}正式进入项目，我们为您定制了赴德计划，同时也需要您的努力，大家目标于{{zieldatum}}将您送往德国。</text>
-      <text class="welcome-text highlight">根据目前进展，您预估在{{aktueldatum}}前后可抵达德国。</text>
+      <text class="welcome-text">您在 <text class="underline">{{startdatum}}</text> 正式进入项目，我们为您定制了赴德计划，同时也需要您的努力，大家目标于 <text class="underline">{{zieldatum}}</text> 将您送往德国。</text>
+      <text class="welcome-text highlight">根据目前进展，您预估在 <text class="underline">{{aktueldatum}}</text> 前后可抵达德国。</text>
       <image class="cat-image" src="/assets/cat.png" mode="aspectFit" />
     </block>
   </view>

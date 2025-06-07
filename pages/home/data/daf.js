@@ -14,8 +14,10 @@ const daf = {
         },
         {
             id: 'driving',
-            name: 'Checkbox',
+            name: 'Dialog',
             label: '指路考',
+            url: 'bearbeitung',
+            icon: 'icon-drive'
         },
     ],
 };
