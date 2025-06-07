@@ -1,0 +1,32 @@
+<wxs module="_"> module.exports.contain = function(arr, key) { return arr.indexOf(key) > -1 } </wxs>
+
+<view class="custom-navbar">
+  <t-navbar class="demo-navbar" title="签证材料" leftArrow />
+</view>
+
+<view class="demo-desc" style="margin: 32rpx 32rpx 48rpx">您可以提前准备签证材料</view>
+
+<t-checkbox-group t-class="horizontal-box" value="{{value}}" bind:change="onChange">
+  <view wx:for="{{items}}" wx:key="index" class="card {{_.contain(value, index) ? 'card--active' : ''}}">
+    <t-icon wx:if="{{_.contain(value, index)}}" name="check" t-class="card__icon" ariaHidden="{{true}}" />
+    <t-checkbox value="{{index}}" label="{{item.label}}" icon="none" borderless />
+  </view>
+</t-checkbox-group>
+
+<t-divider />
+
+<view class="detail-section">
+  <view class="detail-text">这里是详细材料信息</view>
+  <view class="detail-text">
+    <t-icon name="file" size="32rpx" class="detail-icon" />
+    护照：如果没有，请提前向本地出入境管理局申请。
+  </view>
+  <view class="detail-text">
+    <t-icon name="cat" size="32rpx" class="detail-icon" />
+    照片：最近半年的一寸证件照。
+  </view>
+  <view class="detail-text">
+    <t-icon name="service" size="32rpx" class="detail-icon" />
+    其他等等。
+  </view>
+</view> 

@@ -3,8 +3,9 @@ const dienst2 = {
     icon: 'undertake-hold-up',
     childArr: [
         {
-            name: 'ActionSheet',
-            label: '签证办理',
+            name: 'Liste',
+            label: '签证办理（可点击）',
+            url: '/pages/liste/index'
         },
         {
             name: 'Dialog',

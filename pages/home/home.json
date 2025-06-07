@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "捷牧学员进度查询",
+  "navigationBarTitleText": "捷牧学员进度指南",
   "usingComponents": {
     "t-navbar": "tdesign-miniprogram/navbar/navbar",
     "t-footer": "tdesign-miniprogram/footer/footer",

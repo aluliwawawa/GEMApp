@@ -1,0 +1,80 @@
+page {
+  background-color: var(--td-bg-color-container);
+}
+
+page .round-image {
+  border-radius: 12rpx;
+}
+
+.side-bar-wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  --td-grid-item-text-font-size: 24rpx;
+}
+
+.side-bar-wrapper .content {
+  flex: 1;
+  transition: transform 0.3s ease;
+}
+
+.side-bar-wrapper .section {
+  padding: 32rpx 0;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.side-bar-wrapper .title {
+  padding-left: 40rpx;
+  margin-bottom: 8rpx;
+  font-size: 28rpx;
+  line-height: 44rpx;
+  color: var(--td-text-color-primary);
+  font-weight: 600;
+}
+
+.side-bar-wrapper .image {
+  width: 96rpx;
+  height: 96rpx;
+  position: relative;
+}
+
+.side-bar-wrapper .cell {
+  margin-right: 32rpx !important;
+}
+
+.side-bar-wrapper .image::before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  border-radius: 24rpx;
+  border: 2rpx solid var(--td-gray-color-4);
+  transform-origin: 0 0;
+  transform: scale(0.5);
+}
+
+.fab-container {
+  position: fixed;
+  right: 32rpx;
+  bottom: 32rpx;
+  z-index: 99;
+}
+
+.fab-container .t-button {
+  width: 160rpx !important;
+  height: 160rpx !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  background-color: #0052d9 !important;
+  color: #fff !important;
+  font-size: 28rpx !important;
+  font-weight: 500 !important;
+} 

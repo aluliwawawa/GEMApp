@@ -9,8 +9,8 @@ const daf = {
         },
         {
             id: 'ode',
-            name: 'Cascader',
-            label: '奥德考试',
+            label: '奥德考试(可点击)',
+            url: '/pages/Oesd/index'
         },
         {
             id: 'driving',

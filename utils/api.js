@@ -27,6 +27,7 @@ const request = (url, method, data) => {
 // 获取用户信息
 export const getUserInfo = async (userId) => {
   try {
+    console.log('🚨 实际传给后端的 UID 是：', userId, typeof userId);
     const response = await request(`/user/${userId}`, 'GET');
     console.log('API响应:', response);
     if (response.status === 'success' && response.data) {

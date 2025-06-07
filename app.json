@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/Oesd/index",
+    "pages/liste/index",
     "pages/button/button",
     "pages/tabs/tabs",
     "pages/icon/icon",
